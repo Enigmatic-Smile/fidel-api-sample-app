@@ -5,6 +5,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors')
 
 const axios = require('axios');
 
@@ -13,10 +14,11 @@ const webhooksRouter = require('./routes/webhooks');
 
 const app = express();
 
+app.use(cors())
+
 axios.defaults.baseURL = process.env.FIDEL_API_BASE_URL;
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 axios.defaults.headers.common['fidel-key'] = process.env.FIDEL_API_KEY;
-
 
 app.set('axios', axios);
 // view engine setup
