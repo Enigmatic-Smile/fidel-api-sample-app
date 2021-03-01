@@ -1,15 +1,15 @@
-const express = require('express');
+import express from 'express'
+const { Router } = express
 
-const programs = express.Router();
-
+const programs = Router()
 const PROGRAMS_BASE_URL = "/v1/programs"
 
 programs.get('/', async (req, res) => {
-  const axios = req.app.get('axios');
+  const axios = req.app.get('axios')
   
-  const apiResponse = await axios.get(PROGRAMS_BASE_URL)
+  const apiResponse = await axios.get(PROGRAMS_BASE_URL).catch(console.log)
 
   res.status(200).send(apiResponse.data.items)
-});
+})
 
-module.exports = programs;
+export default programs
