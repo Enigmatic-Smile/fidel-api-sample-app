@@ -79,7 +79,7 @@ export default function CreateTransaction({
   }
 
   return (
-    <div class="flex flex-col bg-white max-w-sm px-6 py-4 mx-auto rounded-lg shadow-md">
+    <div className="flex flex-col bg-white max-w-sm px-6 py-4 mx-auto rounded-lg shadow-md">
       <Select label="Program" items={programs} onChange={setSelectedProgram} />
       {locations.length > 0 && (
         <Select
@@ -98,19 +98,19 @@ export default function CreateTransaction({
           onChange={setSelectedCard}
         />
       )}
-      <div class="my-2 relative w-full inline-flex items-center">
-        <label class="w-40">Amount</label>
+      <div className="my-2 relative w-full inline-flex items-center">
+        <label className="w-40">Amount</label>
         <input
           onChange={(e) => setAmount(e.target.value)}
           placeholder="10"
           defaultValue={amount}
-          class="w-60 border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+          className="w-60 border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
         ></input>
       </div>
-      <div class="my-2 relative w-full inline-flex items-center">
+      <div className="my-2 relative w-full inline-flex items-center">
         <button
           onClick={createTransaction}
-          class="w-full bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded"
+          className="w-full bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded"
         >
           Create Transaction
         </button>
