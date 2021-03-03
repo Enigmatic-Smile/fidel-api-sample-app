@@ -6,3 +6,4 @@ test("renders Transactions header", () => {
   const transactionsHeader = screen.getByText(/Transactions/i);
   expect(transactionsHeader).toBeInTheDocument();
 });
+

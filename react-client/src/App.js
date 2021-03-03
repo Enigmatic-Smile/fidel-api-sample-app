@@ -6,7 +6,7 @@ import axios from "axios";
 import { ReactComponent as Logo } from "./assets/logo.svg";
 import { ReactComponent as LogoWhite } from "./assets/logo-white.svg";
 
-import Transaction from "./components/Transactions";
+import Transaction from "./components/Transaction";
 import CreateTransaction from "./components/CreateTransaction";
 
 function App() {
@@ -80,7 +80,7 @@ function App() {
                 </h1>
               </div>
               {transactions.map(({ transaction, type }, idx) => (
-                <Transaction key={idx} transaction={transaction} type={type} />
+                <Transaction key={idx} transaction={transaction} type={type} transactions={transactions} />
               ))}
             </div>
             <div className="-mx-8 w-4/12 hidden lg:block">

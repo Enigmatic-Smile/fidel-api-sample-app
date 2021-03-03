@@ -4,7 +4,7 @@ import env from "react-dotenv";
 
 import { formatCard } from "../utils";
 
-const Transactions = ({ transaction, type }) => {
+const Transaction = ({ transaction, type, transactions }) => {
   async function clearTransaction(transaction) {
     try {
       await axios.get(
@@ -20,7 +20,7 @@ const Transactions = ({ transaction, type }) => {
           <span className="font-light text-gray-600">
             {new Date(transaction?.created).toLocaleString()}
           </span>
-          {transaction.cleared === false && (
+          {(transactions.filter(tr => tr.transaction.id === transaction.id).length != 2) && (
             <button
               onClick={() => clearTransaction(transaction)}
               className="px-2 py-1 bg-gray-100 text-gray-600 font-bold rounded hover:bg-gray-300"
@@ -88,4 +88,4 @@ const Transactions = ({ transaction, type }) => {
   );
 };
 
-export default Transactions;
+export default Transaction;
