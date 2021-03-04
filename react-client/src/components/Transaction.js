@@ -20,7 +20,7 @@ const Transaction = ({ transaction, type, transactions }) => {
           <span className="font-light text-gray-600">
             {new Date(transaction?.created).toLocaleString()}
           </span>
-          {(transactions.filter(tr => tr.transaction.id === transaction.id).length != 2) && (
+          {(transactions.filter(tr => tr.transaction.id === transaction.id).length !== 2) && (
             <button
               onClick={() => clearTransaction(transaction)}
               className="px-2 py-1 bg-gray-100 text-gray-600 font-bold rounded hover:bg-gray-300"
