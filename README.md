@@ -2,7 +2,7 @@
 
 This repository contains examples of using the Fidel API to build and deploy card-linked applications.
 
-Each example has a two-part prefix, `<role>-<framework>`, to indicate which `<role>` and `<framework>` it pertains to.
+Each example has a two-part prefix, `<framework>-<role>`, to indicate which `<role>` and `<framework>` it pertains to.
 For example, `<role>` could be one of `server` or `client`. `<framework>` can be any technology used to demonstrate implementing with the Fidel APIs and SDKs.
 
 See the [Fidel API documentation](https://fidel.uk/docs/) for more details on getting started with Fidel API.
