@@ -16,7 +16,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-dotenv && craco start",
+    "start": "node ./server/bin/www & react-dotenv && craco start",
     "build": "react-dotenv && craco build",
     "test": "react-dotenv && craco test",
     "eject": "react-scripts eject"
@@ -40,7 +40,10 @@
     ]
   },
   "react-dotenv": {
-    "whitelist": ["MIDDLEWARE_API_ENDPOINT", "FIDEL_SDK_KEY"]
+    "whitelist": [
+      "MIDDLEWARE_API_ENDPOINT",
+      "FIDEL_SDK_KEY"
+    ]
   },
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.3",

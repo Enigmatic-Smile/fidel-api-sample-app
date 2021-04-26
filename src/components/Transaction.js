@@ -37,7 +37,6 @@ const Transaction = ({ transaction, type, transactions }) => {
             <div className="md:flex">
               <div className="w-full p-4">
                 <div className="flex justify-between items-center text-white">
-                  {" "}
                   <span className="text-3xl font-bold">
                     {transaction?.card?.scheme.toUpperCase()}
                   </span>
@@ -58,7 +57,6 @@ const Transaction = ({ transaction, type, transactions }) => {
               </p>
             </div>
             <div className="mt-2">
-              at{" "}
               <span className="text-2xl text-gray-700 font-bold hover:underline">
                 <img
                   src={
