@@ -3,13 +3,13 @@ import React from "react";
 import { ReactComponent as Arrow } from "../assets/arrow.svg";
 
 const Select = ({ label, items, onChange }) => (
-  <div className="my-2 relative w-full inline-flex items-center">
-    <label className="w-40">{label}</label>
-    <Arrow className="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" />
-    <select
+  <div className="my-2 relative w-full z-10">
+    <label htmlFor={label.toLowerCase()} className="block text-sm mt-3">{label}</label>
+    <Arrow className="w-2 h-2 absolute top-7 right-0 m-4 pointer-events-none" />
+    <select id={label.toLowerCase()}
       defaultValue={0}
       onChange={(e) => onChange(e.target.value)}
-      className="w-full border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+      className="px-4 py-3 focus:outline-none border w-full appearance-none"
     >
       <option disabled value={0}>
         Choose a {label}

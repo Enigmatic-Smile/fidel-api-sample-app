@@ -1,56 +1,73 @@
-# Fidel API Examples
+# Sample Application for Using the Fidel API and Web SDK
 
-This repository contains examples of using the Fidel API to build and deploy card-linked applications.
+The application in this repository implements:
+- a Node.js Server that listens for webhook events coming from Fidel and passes them on to a WebSocket and provides an authentication layer for calling various Fidel APIs.
+A React Client that receives transactions from the server via a WebSocket, can create test transactions using the server and Fidel APIs and link cards using the Fidel Web SDK.
 
-Each example has a two-part prefix, `<framework>-<role>`, to indicate which `<role>` and `<framework>` it pertains to.
-For example, `<role>` could be one of `server` or `client`. `<framework>` can be any technology used to demonstrate implementing with the Fidel APIs and SDKs.
+![screenshot.png](screenshot.png)
 
-See the [Fidel API documentation](https://fidel.uk/docs/) for more details on getting started with Fidel API.
+If you want to run it locally, please start by cloning the repo to your local environment:
 
-## Checking Out a Single Example
-
-You can checkout only the examples you want by using a [sparse checkout](https://git-scm.com/docs/git-sparse-checkout). The following example shows how checkout only the example you want.
-
-```bash
-$ mkdir fidel-examples && cd fidel-examples
-$ git init
-$ git remote add origin -f https://github.com/FidelLimited/fidel-examples/
-$ git config core.sparseCheckout true
-$ echo <example> >> .git/info/sparse-checkout
-$ git pull origin main
+```sh
+$ git clone git@github.com:FidelLimited/fidel-api-sample-app.git
 ```
 
-## Using Fidel Webhooks
+## Requirements
 
-To receive real-time transactions from the Fidel API, you'll need to register publicly accessible webhooks either via the [Fidel Dashboard](https://dashboard.fidel.uk/webhooks) or the [Webhooks API](https://reference.fidel.uk/reference#create-webhook-program). You can't register the example servers running locally without exposing them to the internet first. We recommend doing that with [ngrok](https://ngrok.com/download) or something similar. After you've downloaded ngrok, please run it on port 3000; all the example servers also run on port 3000.
+You'll need a few things before you can run this sample application locally:
+- [Node.js](https://nodejs.org/en/) v12.22+.
+- [ngrok](https://ngrok.com/download) downloaded and installed (it might also ask you to sign up for an account in the process).
+- [A Fidel Account](https://dashboard.fidel.uk/sign-up?ref=github-sample).
 
-`./ngrok http 3000`
+## Getting Started
 
-ngork will give you a random-looking ngrok.io URL, similar to `https://98c1bcdc8042.ngrok.io`. Please use it to register webhooks in the [Fidel Dashboard](https://dashboard.fidel.uk/webhooks). We recommend you register at least 2 webhooks, `transaction.auth` and `transaction.clearing`, the example clients in this repository are using them. The Webhook URLs should be similar to `https://98c1bcdc8042.ngrok.io/api/webhooks/transaction.auth` and `https://98c1bcdc8042.ngrok.io/api/webhooks/transaction.clearing`.
+### Run ngrok
 
-## Outline
+We are using `ngrok` to expose our locally running application server to the Fidel platform without deploying it in a hosted environment. After you've downloaded and installed `ngrok`, you'll need to run it on port 3000 because the application server is listening on that particular port.
 
-- [Fidel API Examples](#fidel-api-examples)
-  - [Checking Out a Single Example](#checking-out-a-single-example)
-  - [Using Fidel Webhooks](#using-fidel-webhooks)
-  - [Outline](#outline)
-  - [Servers](#servers)
-    - [JavaScript Servers](#javascript-servers)
-  - [Clients](#clients)
-    - [JavaScript Clients](#javascript-clients)
+```sh
+$ ./ngrok http 3000
+```
 
-## Servers
+ngork will give you a random-looking ngrok.io URL, similar to `https://98c1bcdc8042.ngrok.io`. Please make a note of it. You will use it to register webhooks in the [Fidel Dashboard](https://dashboard.fidel.uk/webhooks).
 
-### JavaScript Servers
+### Register Webhooks
 
-Example   | Description |
---------- | --------- |
-[express-server](express-server) | Example server for implementing with the Fidel API using Node.js, Express, Socket.io and Axios.
+After you've signed up for a Fidel account, you'll notice it comes with demo data in a test sandbox. Your account has a "Demo Program", which we'll use with this sample application. We'll register webhooks on the demo program in the [Fidel Dashboard](https://dashboard.fidel.uk/programs). If you click on the program name on the main screen, you'll see a "Webhooks" option appear on the side menu. Choosing that option will take you to the [Webhooks](https://dashboard.fidel.uk/webhooks) screen, where you can register a "New webhook".
 
-## Clients
+This application server implements a generic catch-all webhook route in `/api/webhooks/:type`. By appending the ngrok URL you got earlier, you can register any of the webhooks supported in the Fidel Dashboard.
 
-### JavaScript Clients
+We recommend you register at least 2 webhooks, `transaction.auth` and `transaction.clearing`, the sample application client in this repository is using them. The Webhook URLs should be similar to `https://98c1bcdc8042.ngrok.io/api/webhooks/transaction.auth` and `https://98c1bcdc8042.ngrok.io/api/webhooks/transaction.clearing`.
 
-Example   | Description |
---------- | --------- |
-[react-client](react-client) | Example client for implementing with the Fidel API & Web SDK using React, TailwindCSS, Socket.io and Axios.
+### Run the Application
+
+First, let's install the project dependencies for the client:
+
+```sh
+$ npm install
+```
+
+And the server:
+
+```sh
+$ cd server
+$ npm install
+$ cd ../
+```
+
+Then, we'll need to create an environment file and populate the Fidel API Key and Fidel SDK Key. 
+
+```sh
+$ cp example.env .env
+```
+Add your Fidel Test keys in the newly created `.env` file. You'll find both keys in the [Account page of the Fidel Dashboard](https://dashboard.fidel.uk/account/plan). Please use the Test keys. They'll start with `sk_test_` for the API key and `pk_test_` for the SDK key.
+
+That's it, you're ready to run the sample application:
+
+```sh
+$ npm start
+```
+
+## Use the Application
+
+After you've run the sample application, a browser window will open to http://localhost:3001/. You can add cards, create transactions, and see transactions appear in real-time in the UI. You can also clear authorized transactions in the same UI.
