@@ -2,7 +2,7 @@
 
 The application in this repository implements:
 - a Node.js Server that listens for webhook events coming from Fidel and passes them on to a WebSocket and provides an authentication layer for calling various Fidel APIs.
-A React Client that receives transactions from the server via a WebSocket, can create test transactions using the server and Fidel APIs and link cards using the Fidel Web SDK.
+- a React Client that receives transactions from the server via a WebSocket, can create test transactions using the server and Fidel APIs and link cards using the Fidel Web SDK.
 
 ![screenshot.png](screenshot.png)
 
