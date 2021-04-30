@@ -43,7 +43,7 @@ const Transaction = ({ transaction, type, transactions }) => {
         <TransactionStatus status={type} />
       </td>
       <td className="px-6 py-2 whitespace-no-wrap border-b border-gray-200 text-sm">{new Date(transaction?.created).toLocaleString()}</td>
-      <td className="px-6 py-2 whitespace-no-wrap border-b border-gray-200 text-sm">
+      <td className="px-6 py-2 whitespace-no-wrap border-b border-gray-200 text-sm text-center">
         {(transactions.filter(tr => tr.transaction.id === transaction.id).length !== 2) && (
           <button
             onClick={() => clearTransaction(transaction)}

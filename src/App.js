@@ -13,6 +13,8 @@ function App() {
   const [programs, setPrograms] = useState([]);
   const [selectedProgram, setSelectedProgram] = useState(null);
 
+  const headers = ["Amount", "Cashback", "Scheme", "Card", "Brand", "Location", "Status", "Date↓", "↻"]
+
   useEffect(() => {
     const getPrograms = async () => {
       try {
@@ -89,15 +91,9 @@ function App() {
                   <table className="min-w-full">
                     <thead>
                       <tr>
-                        <th className="px-6 py-2 py-3 text-left text-gray-400 font-light text-sm">Amount</th>
-                        <th className="px-6 py-2 py-3 text-left text-gray-400 font-light text-sm">Cashback</th>
-                        <th className="px-6 py-2 py-3 text-left text-gray-400 font-light text-sm">Scheme</th>
-                        <th className="px-6 py-2 py-3 text-left text-gray-400 font-light text-sm">Card</th>
-                        <th className="px-6 py-2 py-3 text-left text-gray-400 font-light text-sm">Brand</th>
-                        <th className="px-6 py-2 py-3 text-left text-gray-400 font-light text-sm">Location</th>
-                        <th className="px-6 py-2 py-3 text-left text-gray-400 font-light text-sm">Status</th>
-                        <th className="px-6 py-2 py-3 text-left text-gray-400 font-light text-sm">Date↓</th>
-                        <th className="px-6 py-2 py-3 text-left text-gray-400 font-light text-sm">↻</th>
+                        {headers.map(header => (
+                          <th className="px-6 py-2 py-3 text-left text-gray-400 font-light text-sm">{header}</th>
+                        ))}
                       </tr>
                     </thead>
                     <tbody className="bg-white">
