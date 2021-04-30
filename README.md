@@ -9,7 +9,7 @@ A React Client that receives transactions from the server via a WebSocket, can c
 If you want to run it locally, please start by cloning the repo to your local environment:
 
 ```sh
-$ git clone https://github.com/FidelLimited/fidel-examples.git
+$ git clone git@github.com:FidelLimited/fidel-api-sample-app.git
 ```
 
 ## Requirements
